@@ -7,7 +7,8 @@ V1：
 V2:  
 1. 页面加载完成自动聚焦到评论输入框。2018/6/12  
 2. 把用户名持久化，存放到浏览器的 LocalStorage 中。页面加载时会把用户名加载出来显示到输入框，用户就不需要重新输入用户名了。2018/6/12  
-V2总结：这次更新用到了React.js生命周期中的componentWillMount与MountcomponentDidMount 。其中componentWillMount用于无Dom节点操作的时候，这里通过该组件实现加载本地浏览器用户信息；MountcomponentDidMount用户加载组件时，获取输入框焦点。这次更新还用到了propTypes进行参数验证，在大型项目中经常见到哦！    ***  
+V2总结：这次更新用到了React.js生命周期中的componentWillMount与MountcomponentDidMount 。其中componentWillMount用于无Dom节点操作的时候，这里通过该组件实现加载本地浏览器用户信息；MountcomponentDidMount用户加载组件时，获取输入框焦点。这次更新还用到了propTypes进行参数验证，在大型项目中经常见到哦！ 
+
 组件的编写内容顺序如下：  
 1. static 开头的类属性，如 defaultProps、propTypes。  
 2. 构造函数，constructor。  
