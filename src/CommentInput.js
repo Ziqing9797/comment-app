@@ -56,8 +56,13 @@ class CommentInput extends Component {
 
   handleSubmit () {
     if (this.props.onSubmit) {//判断是否传入了 onSubmit 属性
-      const { username, content } = this.state
-      this.props.onSubmit({username, content})
+      // const { username, content } = this.state
+      // this.props.onSubmit({username, content})
+      this.props.onSubmit({
+        username: this.state.username,
+        content: this.state.content,
+        createdTime: +new Date() //给发布的评论加上时间戳
+      })
     }
     //清空用户输入的评论内容(为了用户体验，保留输入的用户名)
     this.setState({ content: '' })
