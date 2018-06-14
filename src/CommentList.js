@@ -1,8 +1,9 @@
 
 // CommentList.js
 import React, { Component } from 'react'
-import Comment from './Comment'
 import PropTypes from 'prop-types'
+import Comment from './Comment'
+
 
 //评论列表组件
 class CommentList extends Component {

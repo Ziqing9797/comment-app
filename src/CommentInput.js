@@ -1,18 +1,23 @@
+
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import wrapWithLoadData from './wrapWithLoadData'
+
 
 //构建评论框组件
 class CommentInput extends Component {
   //组件参数验证
-  static propTypes = {
-    onSubmit: PropTypes.func //必须接收一个func类型的参数
+  static propTypes = { 
+    onSubmit: PropTypes.func, //必须接收一个func类型的参数
+    data: PropTypes.any,
+    saveData: PropTypes.func.isRequired
   }
 
-  constructor (){
-    super()
+  constructor (props){
+    super(props)
     //初始化一个 state 来保存用户名和评论这两个状态
     this.state = {
-      username:'',
+      username:props.data || '',
       content: ''
     }
   }
@@ -21,24 +26,9 @@ class CommentInput extends Component {
     this.textarea.focus()
   }
 
-  //组件挂载时加载用户名
-   componentWillMount () {
-    this._loadUsername()
-  }
-  _loadUsername () {//从浏览器加载用户名
-    const username = localStorage.getItem('username')
-    if(username) {
-      this.setState({ username })
-    }
-  }
-
-  //保存用户输入的内容到LocalStorage中
-  _saveUsername (username) {  //私有方法以 _ 开头
-    localStorage.setItem('username', username)
-  }
   //输入框失去焦点的时候
   handleUsernameBlur (event) {
-    this._saveUsername(event.target.value)
+    this.props.saveData(event.target.value)
   }
 
   //通过监听输入框，来改变username的state的状态
@@ -102,4 +92,6 @@ class CommentInput extends Component {
   }
 }
 
+
+CommentInput = wrapWithLoadData(CommentInput, 'username')
 export default CommentInput
